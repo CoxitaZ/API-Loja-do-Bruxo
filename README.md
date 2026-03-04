@@ -1,2 +1,2 @@
 # API-Loja-do-Bruxo
-Um feiticeiro estava com problemas para manusear sua loja com apenas metodos arcaicos, então foi decidido pelo concelho que ele merecia ganhar uma API mediocre como essa para facilitar sua vida.
+Um feiticeiro enfrentava dificuldades para administrar sua loja usando apenas métodos arcaicos. Diante disso, o conselho decidiu que ele merecia receber uma API — ainda que medíocre — para tornar sua rotina um pouco mais fácil.
