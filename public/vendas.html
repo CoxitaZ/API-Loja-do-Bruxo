@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Vendas — Loja do Bruxo</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+  <a href="/public/index.html" id="navItens">Itens</a>
+  <a href="/public/clientes.html" id="navClientes">Clientes</a>
+  <a href="/public/vendas.html" id="navVendas">Vendas</a>
+</nav>
+
+<script>
+  const path = window.location.pathname;
+  if (path.includes("index")) navItens.classList.add("active");
+  if (path.includes("clientes")) navClientes.classList.add("active");
+  if (path.includes("vendas")) navVendas.classList.add("active");
+</script>
+
+<header class="container">
+  <h1>🧙‍♂️ Registrar Venda</h1>
+  <p>Selecione o cliente, adicione itens e finalize a venda.</p>
+</header>
+
+<main class="container">
+
+  <!-- FORMULÁRIO DE VENDA -->
+  <section class="card">
+    <h2>Nova Venda</h2>
+
+    <div class="grid">
+      <div class="field">
+        <label>Cliente</label>
+        <select id="clienteSelect"></select>
+      </div>
+
+      <div class="field">
+        <label>Item</label>
+        <select id="itemSelect"></select>
+      </div>
+
+      <div class="field">
+        <label>Quantidade</label>
+        <input type="number" id="quantidadeInput" min="1" value="1">
+      </div>
+    </div>
+
+    <button id="addItemBtn">Adicionar Item</button>
+
+    <h3>Itens da Venda</h3>
+    <ul id="itensList" class="list"></ul>
+
+    <h2>Total: R$ <span id="totalDisplay">0.00</span></h2>
+
+    <button id="finalizarBtn">Finalizar Venda</button>
+  </section>
+
+  <!-- LISTA DE VENDAS -->
+  <section class="card">
+    <h2>Histórico de Vendas</h2>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Total</th>
+            <th>Data</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+
+        <tbody id="vendasTbody">
+          <tr><td colspan="5">Carregando...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<!-- TOAST -->
+<div id="toast" class="toast" hidden></div>
+
+<script>
+    window.API_BASE_URL = "http://localhost:3000";
+</script>
+<script src="./vendas.js"></script>
+
+</body>
+</html>

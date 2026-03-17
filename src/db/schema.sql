@@ -26,3 +26,22 @@ CREATE TABLE IF NOT EXISTS clientes (
 
 CREATE INDEX IF NOT EXISTS idx_clientes_nome ON clientes (nome);
 CREATE INDEX IF NOT EXISTS idx_clientes_email ON clientes (email);
+
+CREATE TABLE IF NOT EXISTS vendas (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  cliente_id INTEGER NOT NULL,
+  total REAL NOT NULL DEFAULT 0,
+  criado_em TEXT NOT NULL,
+  atualizado_em TEXT NOT NULL,
+  FOREIGN KEY (cliente_id) REFERENCES clientes(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS vendas_itens (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  venda_id INTEGER NOT NULL,
+  item_id INTEGER NOT NULL,
+  quantidade INTEGER NOT NULL,
+  preco_unitario REAL NOT NULL,
+  FOREIGN KEY (venda_id) REFERENCES vendas(id) ON DELETE CASCADE,
+  FOREIGN KEY (item_id) REFERENCES items(id)
+);

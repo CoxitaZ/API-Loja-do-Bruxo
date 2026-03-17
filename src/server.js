@@ -5,6 +5,7 @@ import { itemsRouter } from "./routes/items.routes.js";
 import { notFoundHandler } from "./middlewares/notFound.js";
 import { errorHandler } from "./middlewares/error.js";
 import { clientesRouter } from "./routes/clientes.routes.js";
+import { vendasRouter } from "./routes/vendas.routes.js";
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.get("/health", (_req, res) => {
 // Rotas da API
 app.use("/items", itemsRouter);
 app.use("/clientes", clientesRouter);
+app.use("/vendas", vendasRouter);
 
 // 404 e erro
 app.use(notFoundHandler);

@@ -13,75 +13,13 @@
 *{ box-sizing: border-box; }
 html,body{ height:100%; }
 body{
-  margin:0; background:linear-gradient(120deg,#0b1220,#0f172a 40%,#0b1220);
-  color:var(--text); font-family:system-ui,Segoe UI,Roboto,Ubuntu,sans-serif;
+  margin:0;
+  background:linear-gradient(120deg,#0b1220,#0f172a 40%,#0b1220);
+  color:var(--text);
+  font-family:system-ui,Segoe UI,Roboto,Ubuntu,sans-serif;
 }
 
-.container{ width:min(1100px, 92%); margin:24px auto; }
-
-h1{ margin:0 0 12px; font-weight:700; letter-spacing:.3px; }
-h2{ margin:0; }
-h3{ margin:0 0 12px; }
-
-.filters{
-  display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;
-}
-.filters input{
-  background:#0b1220; border:1px solid var(--border); color:var(--text);
-  padding:10px 12px; border-radius:12px; outline:none; min-width:220px;
-}
-button{
-  background:var(--primary); color:#06120a; border:none; border-radius:12px;
-  padding:10px 14px; cursor:pointer; font-weight:700; box-shadow:var(--shadow);
-}
-button.secondary{
-  background:#0b1220; color:var(--text); border:1px solid var(--border); box-shadow:none;
-}
-button.danger{ background:var(--danger); color:#fff; }
-
-.card{
-  background:linear-gradient(180deg,#0f172a,#0c1324); border:1px solid var(--border);
-  border-radius:20px; box-shadow:var(--shadow); padding:16px;
-}
-.card-header{ display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
-
-.table-wrapper{ overflow:auto; border:1px solid var(--border); border-radius:16px; }
-table{ width:100%; border-collapse:collapse; }
-th, td{ padding:12px 10px; border-bottom:1px solid var(--border); text-align:left; }
-thead th{ position:sticky; top:0; background:#0c1324; z-index:1; }
-tbody tr:hover{ background:rgba(255,255,255,.03); }
-
-.pagination{
-  display:flex; align-items:center; justify-content:center; gap:12px; padding:12px 0;
-}
-
-dialog#itemModal{
-  border:none; border-radius:20px; background:#0f172a; color:var(--text);
-  width:min(720px, 92%); box-shadow:var(--shadow); padding:0;
-}
-dialog::backdrop{ background:rgba(0,0,0,.55); }
-#itemModal form{ padding:16px; }
-.grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-.field{ display:flex; flex-direction:column; gap:6px; }
-.field-col{ grid-column:1 / -1; }
-input, textarea{
-  background:#0b1220; border:1px solid var(--border); color:var(--text);
-  padding:10px 12px; border-radius:12px; outline:none;
-}
-.modal-actions{ display:flex; gap:8px; justify-content:flex-end; margin-top:8px; }
-
-.error{ color:#ffb4b4; min-height:20px; }
-
-.badge{
-  display:inline-block; font-size:12px; padding:4px 8px; border-radius:999px;
-  background:#0b1220; border:1px solid var(--border); color:#cbd5e1;
-}
-
-.toast{
-  position:fixed; bottom:20px; right:20px; padding:12px 14px; border-radius:12px;
-  background:#111827; border:1px solid var(--border); box-shadow:var(--shadow);
-}
-
+/* ---------------- NAVBAR ---------------- */
 .navbar {
   background: #0c1324;
   padding: 14px 20px;
@@ -96,8 +34,207 @@ input, textarea{
   text-decoration: none;
   font-weight: 600;
   padding-bottom: 4px;
+  transition: 0.2s ease;
+}
+
+.navbar a:hover {
+  color: var(--primary);
 }
 
 .navbar a.active {
-  border-bottom: 2px solid var(--primary);
+  border-bottom: 3px solid var(--primary);
+}
+
+/* ---------------- CONTAINERS ---------------- */
+.container{ 
+  width:min(1100px, 92%);
+  margin:24px auto;
+}
+
+h1{ margin:0 0 12px; font-weight:700; }
+h2{ margin:0; }
+h3{ margin:0 0 12px; }
+
+/* ---------------- FILTER BAR ---------------- */
+.filters{
+  display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;
+}
+
+.filters input{
+  background:#0b1220;
+  border:1px solid var(--border);
+  color:var(--text);
+  padding:10px 12px;
+  border-radius:12px;
+  outline:none;
+  min-width:220px;
+}
+
+/* ---------------- BUTTONS ---------------- */
+button{
+  background:var(--primary);
+  color:#06120a;
+  border:none;
+  border-radius:12px;
+  padding:10px 14px;
+  cursor:pointer;
+  font-weight:700;
+  box-shadow:var(--shadow);
+  transition:0.2s ease;
+}
+
+button:hover {
+  background:var(--primary-800);
+}
+
+button.secondary{
+  background:#0b1220;
+  color:var(--text);
+  border:1px solid var(--border);
+  box-shadow:none;
+}
+
+button.secondary:hover{
+  background:#1a2438;
+}
+
+button.danger{
+  background:var(--danger);
+  color:#fff;
+}
+button.danger:hover{
+  background:#d13232;
+}
+
+/* ---------------- CARD ---------------- */
+.card{
+  background:linear-gradient(180deg,#0f172a,#0c1324);
+  border:1px solid var(--border);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  padding:16px;
+}
+
+.card-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:10px;
+}
+
+/* ---------------- TABLE ---------------- */
+.table-wrapper{
+  overflow:auto;
+  border:1px solid var(--border);
+  border-radius:16px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th, td{
+  padding:12px 10px;
+  border-bottom:1px solid var(--border);
+  text-align:left;
+}
+
+thead th{
+  position:sticky;
+  top:0;
+  background:#0c1324;
+  z-index:1;
+}
+
+tbody tr:hover{
+  background:rgba(255,255,255,.03);
+}
+
+.badge{
+  display:inline-block;
+  font-size:12px;
+  padding:4px 8px;
+  border-radius:999px;
+  background:#0b1220;
+  border:1px solid var(--border);
+  color:#cbd5e1;
+}
+
+/* ---------------- PAGINATION ---------------- */
+.pagination{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  padding:12px 0;
+}
+
+/* ---------------- MODAL ---------------- */
+dialog{
+  border:none;
+  border-radius:20px;
+  background:#0f172a;
+  color:var(--text);
+  width:min(720px, 92%);
+  box-shadow:var(--shadow);
+  padding:0;
+}
+
+dialog::backdrop{ background:rgba(0,0,0,.55); }
+
+dialog form{
+  padding:16px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.field-col{
+  grid-column:1 / -1;
+}
+
+/* Inputs gerais do modal */
+input, textarea{
+  background:#0b1220;
+  border:1px solid var(--border);
+  color:var(--text);
+  padding:10px 12px;
+  border-radius:12px;
+  outline:none;
+}
+
+/* Ações do modal */
+.modal-actions{
+  display:flex;
+  gap:8px;
+  justify-content:flex-end;
+  margin-top:8px;
+}
+
+/* Mensagens de erro */
+.error{
+  color:#ffb4b4;
+  min-height:20px;
+}
+
+/* ---------------- TOAST ---------------- */
+.toast{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  padding:12px 14px;
+  border-radius:12px;
+  background:#111827;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
 }
