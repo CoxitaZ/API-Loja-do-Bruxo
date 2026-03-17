@@ -14,7 +14,6 @@ async function init() {
   const schema = fs.readFileSync(schemaPath, "utf8");
   await db.exec(schema);
 
-  // Seeds (opcionais)
   const now = new Date().toISOString();
 
   const existing = await db.get("SELECT COUNT(*) as count FROM items");
@@ -28,6 +27,23 @@ async function init() {
       `INSERT INTO items (nome, descricao, preco, estoque, categoria, created_at, updated_at)
        VALUES (?, ?, ?, ?, ?, ?, ?)`,
       ["Pergaminho de Fogo", "Lança uma bola de fogo.", 120, 3, "pergaminhos", now, now]
+    );
+  }
+  const countClientes = await db.get("SELECT COUNT(*) as total FROM clientes");
+
+  if (countClientes.total === 0) {
+    const agora = new Date().toISOString();
+
+    await db.run(
+      `INSERT INTO clientes (nome, email, telefone, endereco, criado_em, atualizado_em)
+      VALUES (?, ?, ?, ?, ?, ?)`,
+      ["Gandalf Cinzento", "gandalf@valinor.me", "99999-0001", "Valfenda", agora, agora]
+    );
+
+    await db.run(
+      `INSERT INTO clientes (nome, email, telefone, endereco, criado_em, atualizado_em)
+      VALUES (?, ?, ?, ?, ?, ?)`,
+      ["Saruman", "saruman@isengard.dark", "99999-0002", "Orthanc", agora, agora]
     );
   }
 

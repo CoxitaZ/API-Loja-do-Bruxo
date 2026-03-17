@@ -81,3 +81,23 @@ input, textarea{
   position:fixed; bottom:20px; right:20px; padding:12px 14px; border-radius:12px;
   background:#111827; border:1px solid var(--border); box-shadow:var(--shadow);
 }
+
+.navbar {
+  background: #0c1324;
+  padding: 14px 20px;
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  padding-bottom: 4px;
+}
+
+.navbar a.active {
+  border-bottom: 2px solid var(--primary);
+}

@@ -31,3 +31,38 @@ export function validateItemPayload(body, { partial = false } = {}) {
 
   return errors;
 }
+
+export function validateClientePayload(body, { partial = false } = {}) {
+  const erros = [];
+
+  // nome
+  if (!partial || body.nome !== undefined) {
+    if (typeof body.nome !== "string" || body.nome.trim().length < 2) {
+      erros.push("O campo 'nome' é obrigatório e deve ter pelo menos 2 caracteres.");
+    }
+  }
+
+  // email
+  if (!partial || body.email !== undefined) {
+    const email = String(body.email || "").trim();
+    if (!email.match(/^\S+@\S+\.\S+$/)) {
+      erros.push("O campo 'email' é obrigatório e deve ser um e-mail válido.");
+    }
+  }
+
+  // telefone
+  if (body.telefone !== undefined && body.telefone !== null) {
+    if (typeof body.telefone !== "string") {
+      erros.push("O campo 'telefone' deve ser texto.");
+    }
+  }
+
+  // endereco
+  if (body.endereco !== undefined && body.endereco !== null) {
+    if (typeof body.endereco !== "string") {
+      erros.push("O campo 'endereco' deve ser texto.");
+    }
+  }
+
+  return erros;
+}

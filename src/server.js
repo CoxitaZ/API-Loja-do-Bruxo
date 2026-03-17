@@ -4,6 +4,7 @@ import "dotenv/config.js";
 import { itemsRouter } from "./routes/items.routes.js";
 import { notFoundHandler } from "./middlewares/notFound.js";
 import { errorHandler } from "./middlewares/error.js";
+import { clientesRouter } from "./routes/clientes.routes.js";
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.get("/health", (_req, res) => {
 
 // Rotas da API
 app.use("/items", itemsRouter);
+app.use("/clientes", clientesRouter);
 
 // 404 e erro
 app.use(notFoundHandler);

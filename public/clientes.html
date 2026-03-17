@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Clientes — Loja do Bruxo</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/public/index.html">Itens</a>
+    <a href="/public/clientes.html" class="active">Clientes</a>
+  </nav>
+
+  <header class="container">
+    <h1>🧙‍♂️ Loja do Feiticeiro — Clientes</h1>
+    <div class="filters">
+      <input id="searchInput" type="search" placeholder="Buscar por nome...">
+      <button id="filterBtn">Filtrar</button>
+      <button id="resetBtn" class="secondary">Limpar</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <div class="card-header">
+        <h2>Lista de Clientes</h2>
+        <button id="openCreateBtn">+ Novo cliente</button>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Telefone</th>
+              <th>Endereço</th>
+              <th>Criado em</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="clientesTbody">
+            <tr><td colspan="7">Carregando...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination">
+        <button id="prevPageBtn" class="secondary">Anterior</button>
+        <span id="pageInfo"></span>
+        <button id="nextPageBtn" class="secondary">Próxima</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <dialog id="clienteModal">
+    <form id="clienteForm" method="dialog">
+      <h3 id="modalTitle">Novo cliente</h3>
+
+      <input type="hidden" id="clienteId">
+
+      <div class="grid">
+        <div class="field">
+          <label for="nome">Nome *</label>
+          <input id="nome" required minlength="2">
+        </div>
+
+        <div class="field">
+          <label for="email">Email *</label>
+          <input id="email" type="email" required>
+        </div>
+
+        <div class="field">
+          <label for="telefone">Telefone</label>
+          <input id="telefone">
+        </div>
+
+        <div class="field field-col">
+          <label for="endereco">Endereço</label>
+          <textarea id="endereco" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="submit">Salvar</button>
+        <button type="button" id="cancelBtn" class="secondary">Cancelar</button>
+      </div>
+
+      <p id="formError" class="error"></p>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script>
+    window.API_BASE_URL = "http://localhost:3000";
+  </script>
+  <script src="./clientes.js"></script>
+</body>
+</html>

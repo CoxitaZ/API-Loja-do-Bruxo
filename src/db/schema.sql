@@ -13,3 +13,16 @@ CREATE TABLE IF NOT EXISTS items (
 
 CREATE INDEX IF NOT EXISTS idx_items_nome ON items (nome);
 CREATE INDEX IF NOT EXISTS idx_items_categoria ON items (categoria);
+
+CREATE TABLE IF NOT EXISTS clientes (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  nome TEXT NOT NULL,
+  email TEXT UNIQUE NOT NULL,
+  telefone TEXT,
+  endereco TEXT,
+  criado_em TEXT NOT NULL,
+  atualizado_em TEXT NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_clientes_nome ON clientes (nome);
+CREATE INDEX IF NOT EXISTS idx_clientes_email ON clientes (email);
