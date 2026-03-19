@@ -71,14 +71,29 @@ vendasRouter.post("/", async (req, res, next) => {
     let total = 0;
 
     for (const item of itens) {
-      const preco = await db.get(`SELECT preco FROM items WHERE id = ?`, item.item_id);
+      const produto = await db.get(`SELECT preco, estoque FROM items WHERE id = ?`, item.item_id);
 
-      total += preco.preco * item.quantidade;
+      if (!produto) throw new Error("Item não encontrado.");
+      if (produto.estoque < item.quantidade) {
+        return res.status(400).json({
+          error: { message: `Estoque insuficiente: disponível ${produto.estoque}.` }
+        });
+      }
 
+      total += produto.preco * item.quantidade;
+
+      // Inserir item na venda
       await db.run(
         `INSERT INTO vendas_itens (venda_id, item_id, quantidade, preco_unitario)
-         VALUES (?, ?, ?, ?)`,
-        venda.lastID, item.item_id, item.quantidade, preco.preco
+        VALUES (?, ?, ?, ?)`,
+        venda.lastID, item.item_id, item.quantidade, produto.preco
+      );
+
+      // 🔥 Atualizar estoque
+      await db.run(
+        `UPDATE items SET estoque = estoque - ? WHERE id = ?`,
+        item.quantidade,
+        item.item_id
       );
     }
 

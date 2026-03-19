@@ -155,3 +155,38 @@ clientesRouter.delete("/:id", async (req, res, next) => {
     next(err);
   }
 });
+
+// HISTÓRICO DE VENDAS DE UM CLIENTE
+clientesRouter.get("/:id/vendas", async (req, res, next) => {
+  try {
+    const db = await getDB();
+    const id = Number(req.params.id);
+
+    const vendas = await db.all(`
+      SELECT v.*
+      FROM vendas v
+      WHERE v.cliente_id = ?
+      ORDER BY v.criado_em DESC
+    `, id);
+
+    const vendasComItens = [];
+
+    for (const venda of vendas) {
+      const itens = await db.all(`
+        SELECT vi.*, i.nome
+        FROM vendas_itens vi
+        JOIN items i ON i.id = vi.item_id
+        WHERE vi.venda_id = ?
+      `, venda.id);
+
+      vendasComItens.push({
+        ...venda,
+        itens
+      });
+    }
+
+    res.json({ data: vendasComItens });
+  } catch (err) {
+    next(err);
+  }
+});
